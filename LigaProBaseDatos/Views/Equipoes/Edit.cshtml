@@ -50,5 +50,25 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function (e) {
+            e.preventDefault(); // Evita el envío del formulario inmediato
+
+            // Obtén los valores desde los inputs
+            let ganados = parseInt(document.querySelector('[name="PartidosGanados"]').value) || 0;
+            let empatados = parseInt(document.querySelector('[name="PartidosEmpatados"]').value) || 0;
+
+            let puntos = ganados * 3 + empatados * 1;
+
+            // Muestra los puntos en una ventana emergente
+            if (confirm("El equipo tiene " + puntos + " puntos. ¿Deseas guardar los cambios?")) {
+                this.submit(); // Envía el formulario si el usuario acepta
+            }
+        });
+    </script>
 }
+

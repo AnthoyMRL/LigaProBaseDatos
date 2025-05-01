@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<LigaProBaseDatos.Models.Jugador>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lista de jugadores";
 }
 
-<h1>Index</h1>
+<h1>Jugadores</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Ingresar Jugador</a>
 </p>
 <table class="table">
     <thead>
@@ -61,8 +61,8 @@
                 @Html.DisplayFor(modelItem => item.Equipo.Nombre)
             </td>
             <td>
-                    <a class=" btn btn-success me-2" a asp-action="Edit" asp-route-id="@item.JugadorId">Edit</a> |
-                    <a class=" btn btn-info me-2" a asp-route-id="@item.JugadorId">Details</a> |
+                    <a class=" btn btn-success me-2" a asp-action="Edit" asp-route-id="@item.JugadorId">Edit</a> 
+                    <a class=" btn btn-info me-2" a asp-route-id="@item.JugadorId">Details</a> 
                     <a class=" btn btn-warning me-2" a asp-route-id="@item.JugadorId">Delete</a>
             </td>
         </tr>
