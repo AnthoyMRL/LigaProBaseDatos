@@ -10,23 +10,23 @@ using LigaProBaseDatos.Models;
 
 namespace LigaProBaseDatos.Controllers
 {
-    public class JugadorController : Controller
+    public class JugadorsController : Controller
     {
         private readonly LigaProTallerContext _context;
 
-        public JugadorController(LigaProTallerContext context)
+        public JugadorsController(LigaProTallerContext context)
         {
             _context = context;
         }
 
-        // GET: Jugador
+        // GET: Jugadors
         public async Task<IActionResult> Index()
         {
             var ligaProTallerContext = _context.Jugador.Include(j => j.Equipo);
             return View(await ligaProTallerContext.ToListAsync());
         }
 
-        // GET: Jugador/Details/5
+        // GET: Jugadors/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,14 +45,14 @@ namespace LigaProBaseDatos.Controllers
             return View(jugador);
         }
 
-        // GET: Jugador/Create
+        // GET: Jugadors/Create
         public IActionResult Create()
         {
-            ViewData["EquipoId"] = new SelectList(_context.Equipo, "EquipoId", "Nombre");
+            ViewData["EquipoId"] = new SelectList(_context.Equipo, "Id", "Nombre");
             return View();
         }
 
-        // POST: Jugador/Create
+        // POST: Jugadors/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -65,11 +65,11 @@ namespace LigaProBaseDatos.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EquipoId"] = new SelectList(_context.Equipo, "EquipoId", "Nombre", jugador.EquipoId);
+            ViewData["EquipoId"] = new SelectList(_context.Equipo, "Id", "Nombre", jugador.EquipoId);
             return View(jugador);
         }
 
-        // GET: Jugador/Edit/5
+        // GET: Jugadors/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,11 +82,11 @@ namespace LigaProBaseDatos.Controllers
             {
                 return NotFound();
             }
-            ViewData["EquipoId"] = new SelectList(_context.Equipo, "EquipoId", "Nombre", jugador.EquipoId);
+            ViewData["EquipoId"] = new SelectList(_context.Equipo, "Id", "Nombre", jugador.EquipoId);
             return View(jugador);
         }
 
-        // POST: Jugador/Edit/5
+        // POST: Jugadors/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -118,11 +118,11 @@ namespace LigaProBaseDatos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EquipoId"] = new SelectList(_context.Equipo, "EquipoId", "Nombre", jugador.EquipoId);
+            ViewData["EquipoId"] = new SelectList(_context.Equipo, "Id", "Nombre", jugador.EquipoId);
             return View(jugador);
         }
 
-        // GET: Jugador/Delete/5
+        // GET: Jugadors/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -141,7 +141,7 @@ namespace LigaProBaseDatos.Controllers
             return View(jugador);
         }
 
-        // POST: Jugador/Delete/5
+        // POST: Jugadors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

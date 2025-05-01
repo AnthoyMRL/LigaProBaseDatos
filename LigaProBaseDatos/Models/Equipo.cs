@@ -1,32 +1,35 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace LigaProBaseDatos.Models
 {
     public class Equipo
     {
         [Key]
-        public int EquipoId { get; set; }
-
+        public int Id { get; set; }
         [Required]
-        public string Nombre { get; set; }
+        [MaxLength(100)]
+        [DisplayName("Nombre del Equipo")]
 
-        public string Descripcion { get; set; }
-
+        public required string Nombre { get; set; }
+        [Range(0, 100)]
         public int PartidosJugados { get; set; }
+        [Range(0, 100)]
         public int PartidosGanados { get; set; }
+        [Range(0, 100)]
         public int PartidosEmpatados { get; set; }
+        [Range(0, 100)]
         public int PartidosPerdidos { get; set; }
-        public string LogoUrl { get; set; }
-
+        [Range(0, 100)]
         public int Puntos
         {
             get
             {
                 return (PartidosGanados * 3) + (PartidosEmpatados * 1);
             }
-        }
 
-        // Relación: Un equipo tiene muchos jugadores
-        public virtual ICollection<Jugador> Jugadores { get; set; }
+        }
+        public virtual ICollection<Jugador>? Jugadores { get; set; }
+
     }
 }

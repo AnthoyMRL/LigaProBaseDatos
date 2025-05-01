@@ -1,0 +1,55 @@
+﻿﻿@{
+    ViewData["Title"] = "Liga Pro";
+}
+
+<div class="text-center">
+    <h1 class="display-4 d-inline">Liga Pro</h1>
+</div>
+
+<div class="container mt-5">
+    <h2>Equipos Inscritos</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Partidos Jugados</th>
+                <th>Partidos Ganados</th>
+                <th>Partidos Empatados</th>
+                <th>Partidos Perdidos</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var equipo in (dynamic)Model.Equipos)
+            {
+                <tr>
+                    <td>@equipo.Nombre</td>
+                    <td>@equipo.PartidosJugados</td>
+                    <td>@equipo.PartidosGanados</td>
+                    <td>@equipo.PartidosEmpatados</td>
+                    <td>@equipo.PartidosPerdidos</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h2>Goleadores</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Goles</th>
+                <th>Equipo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var jugador in (dynamic)Model.JugadoresGoleadores)
+            {
+                <tr>
+                    <td>@jugador.Nombre</td>
+                    <td>@jugador.Goles</td>
+                    <td>@jugador.Equipo.Nombre</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -16,9 +16,6 @@
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.PartidosJugados)
             </th>
             <th>
@@ -30,9 +27,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.PartidosPerdidos)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LogoUrl)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -41,9 +35,6 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PartidosJugados)
@@ -58,12 +49,9 @@
                 @Html.DisplayFor(modelItem => item.PartidosPerdidos)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LogoUrl)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EquipoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EquipoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EquipoId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

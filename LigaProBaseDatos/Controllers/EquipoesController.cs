@@ -10,22 +10,22 @@ using LigaProBaseDatos.Models;
 
 namespace LigaProBaseDatos.Controllers
 {
-    public class EquipoController : Controller
+    public class EquipoesController : Controller
     {
         private readonly LigaProTallerContext _context;
 
-        public EquipoController(LigaProTallerContext context)
+        public EquipoesController(LigaProTallerContext context)
         {
             _context = context;
         }
 
-        // GET: Equipo
+        // GET: Equipoes
         public async Task<IActionResult> Index()
         {
             return View(await _context.Equipo.ToListAsync());
         }
 
-        // GET: Equipo/Details/5
+        // GET: Equipoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,7 +34,7 @@ namespace LigaProBaseDatos.Controllers
             }
 
             var equipo = await _context.Equipo
-                .FirstOrDefaultAsync(m => m.EquipoId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (equipo == null)
             {
                 return NotFound();
@@ -43,18 +43,18 @@ namespace LigaProBaseDatos.Controllers
             return View(equipo);
         }
 
-        // GET: Equipo/Create
+        // GET: Equipoes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Equipo/Create
+        // POST: Equipoes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EquipoId,Nombre,Descripcion,PartidosJugados,PartidosGanados,PartidosEmpatados,PartidosPerdidos,LogoUrl")] Equipo equipo)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,PartidosJugados,PartidosGanados,PartidosEmpatados,PartidosPerdidos")] Equipo equipo)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace LigaProBaseDatos.Controllers
             return View(equipo);
         }
 
-        // GET: Equipo/Edit/5
+        // GET: Equipoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,14 +81,14 @@ namespace LigaProBaseDatos.Controllers
             return View(equipo);
         }
 
-        // POST: Equipo/Edit/5
+        // POST: Equipoes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EquipoId,Nombre,Descripcion,PartidosJugados,PartidosGanados,PartidosEmpatados,PartidosPerdidos,LogoUrl")] Equipo equipo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,PartidosJugados,PartidosGanados,PartidosEmpatados,PartidosPerdidos")] Equipo equipo)
         {
-            if (id != equipo.EquipoId)
+            if (id != equipo.Id)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace LigaProBaseDatos.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EquipoExists(equipo.EquipoId))
+                    if (!EquipoExists(equipo.Id))
                     {
                         return NotFound();
                     }
@@ -116,7 +116,7 @@ namespace LigaProBaseDatos.Controllers
             return View(equipo);
         }
 
-        // GET: Equipo/Delete/5
+        // GET: Equipoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,7 +125,7 @@ namespace LigaProBaseDatos.Controllers
             }
 
             var equipo = await _context.Equipo
-                .FirstOrDefaultAsync(m => m.EquipoId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (equipo == null)
             {
                 return NotFound();
@@ -134,7 +134,7 @@ namespace LigaProBaseDatos.Controllers
             return View(equipo);
         }
 
-        // POST: Equipo/Delete/5
+        // POST: Equipoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -151,7 +151,7 @@ namespace LigaProBaseDatos.Controllers
 
         private bool EquipoExists(int id)
         {
-            return _context.Equipo.Any(e => e.EquipoId == id);
+            return _context.Equipo.Any(e => e.Id == id);
         }
     }
 }

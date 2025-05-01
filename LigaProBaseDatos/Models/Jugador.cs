@@ -17,14 +17,15 @@ namespace LigaProBaseDatos.Models
         public int Goles { get; set; }
 
         public int Asistencias { get; set; }
-
+        [DataType(DataType.Currency)]
         public decimal Sueldo { get; set; }
 
         public string Posicion { get; set; } // Característica extra (puede ser: delantero, mediocampista, etc.)
 
         // Relación: Jugador pertenece a un equipo
-        [ForeignKey("Equipo")]
+       
         public int EquipoId { get; set; }
-        public virtual Equipo Equipo { get; set; }
+        [ForeignKey("EquipoId")]
+        public virtual Equipo? Equipo { get; set; }
     }
 }
